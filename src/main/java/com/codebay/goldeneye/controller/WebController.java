@@ -1,5 +1,7 @@
-package com.codebay.goldeneye;
+package com.codebay.goldeneye.controller;
 
+import com.codebay.goldeneye.model.Employee;
+import com.codebay.goldeneye.model.Offices;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.stereotype.Controller;
@@ -32,7 +34,7 @@ public class WebController {
         //    for (int j = 0; j < departments.indexOf(i); j++) {
         //        System.out.println(departments.get(i).get(j));
         //    }
-        //
+        
         return "index";
     }
 
