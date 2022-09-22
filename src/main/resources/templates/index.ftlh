@@ -1,5 +1,5 @@
 <!DOCTYPE html>  
-<html lang="en">  
+<html lang="en" xmlns:th="http://www.thymeleaf.org">  
     <head>
         <meta charset="UTF-8">
         <title>Goldeneye</title>
@@ -11,16 +11,15 @@
         <div class="container">
             <h2>Email addres generator</h2>
         </div>
-
+        <div th:text="${spain[0]}"></div>
         <div class="container">
-
         <form action="#" th:action="@{/}" method="post">
             <p>Name of the Employee: <input type="text" name="name" /></p>
             <p>Surname of the Employee: <input type="text" name="surname" /></p>
             <p>Office: <input type="text" name="office" /></p>
             <p>Department: <input type="text" name="department" /></p>
             <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
+        </form> 
             <div>
             </div>
         </div>
