@@ -1,4 +1,4 @@
-package com.codebay.goldeneye.model;
+package com.codebay.goldeneye;
 
 public class Employee {
 
