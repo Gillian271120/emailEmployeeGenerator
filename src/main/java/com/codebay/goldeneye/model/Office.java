@@ -28,7 +28,16 @@ public class Office {
     /**
      * Departments of the office
      */
-    public ArrayList<String> departments;
+    private ArrayList<String> departments;
+
+    public ArrayList<String> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(ArrayList<String> departments) {
+        this.departments = departments;
+    }
+    
     
     /**
      * Sets the office name
@@ -44,7 +53,7 @@ public class Office {
      */
     //private static String departments[];
     
-    private static ArrayList<Office> allOffices = new ArrayList<>();
+    private static final ArrayList<Office> allOffices = new ArrayList<>();
 
     /**
      * Gets the departments of the offices

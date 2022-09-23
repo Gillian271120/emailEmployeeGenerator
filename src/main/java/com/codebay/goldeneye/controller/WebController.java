@@ -24,7 +24,7 @@ public class WebController {
         Office spain = new Office("Spain",departments);
         
         departments.clear();
-        departments.addAll(Arrays.asList("Research & development","Business"));
+        departments.addAll(Arrays.asList("Research & development","Business", "Design"));
         Office milan = new Office("Milan",departments);
         
         departments.clear();
@@ -33,22 +33,17 @@ public class WebController {
         
         System.out.println(Office.getOffices());
         
-        //for (int i = 0; i < departments.size(); i++) {
-        //    System.out.println(departments.get(i));
-        //    for (int j = 0; j < departments.indexOf(i); j++) {
-        //        System.out.println(departments.get(i).get(j));
-        //    }
-        //}
-        System.out.println(spain.departments);
-        model.addAttribute("spain", spain.departments);
-        //model.addAttribute("offices", Office.getOffices());
+        model.addAttribute("offices", Office.getOffices());
         return "index";
     }
 
     @PostMapping("/")
-    public String showGeneratedAddress(@ModelAttribute Employee employee) {
+    public String showGeneratedAddress(@ModelAttribute Employee employee, Model model) {
         System.out.println(employee);
         
+        
+        
+        model.addAttribute("offices", Office.getOffices());
         return "index";
     }
 }
