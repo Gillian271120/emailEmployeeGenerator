@@ -16,6 +16,7 @@ public class WebController {
     @GetMapping("/")
     public String index(Model model) {
         
+        Office.clearOffices();
         
         new Office("Spain", new ArrayList<>(
                 Arrays.asList("Research & development","Business")
