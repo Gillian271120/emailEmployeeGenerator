@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class WebController {
@@ -17,33 +16,58 @@ public class WebController {
     @GetMapping("/")
     public String index(Model model) {
         
-        Office.clearOffices();
-        ArrayList<String> departments = new ArrayList<>(
+        
+        new Office("Spain", new ArrayList<>(
                 Arrays.asList("Research & development","Business")
-        );
-        Office spain = new Office("Spain",departments);
+        ));
         
-        departments.clear();
-        departments.addAll(Arrays.asList("Research & development","Business", "Design"));
-        Office milan = new Office("Milan",departments);
         
-        departments.clear();
-        departments.addAll(Arrays.asList("Business", "Advertising"));
-        Office newYork = new Office("New York",departments);
+        new Office("Milan",new ArrayList<>(
+                Arrays.asList("Research & development","Business", "Design")
+        ));
         
-        System.out.println(Office.getOffices());
-        
+        new Office("New York",new ArrayList<>(
+                Arrays.asList("Business", "Advertising")
+        ));
+
+                
         model.addAttribute("offices", Office.getOffices());
         return "index";
     }
 
     @PostMapping("/")
-    public String showGeneratedAddress(@ModelAttribute Employee employee, Model model) {
-        System.out.println(employee);
+    public String showGeneratedAddress(@ModelAttribute Employee employee, Model model) {;
+        if (
+            employee.getName().length() == 0 ||
+            employee.getSurname().length() == 0 || 
+            employee.getDepartment().length() == 0 ||
+            employee.getOffice().length() == 0
+            )
+        {
+            model.addAttribute("error", "All fieds are required and must not be empty");
+            model.addAttribute("offices", Office.getOffices());
+        } else {
+        
+            String email = 
+                employee.getName().charAt(0) +
+                employee.getSurname().replaceAll(" ", "")+
+                "." +
+                employee.getDepartment().replaceAll(" ", "") +
+                "@" +
+                employee.getOffice() +
+                "." +
+                "goldeneye.com";
+
+            email = email.toLowerCase();
+
+            // Set your API request here
+        
+            email = "The Email is: " + email;
+            model.addAttribute("email", email);
+            model.addAttribute("offices", Office.getOffices());
+        }
         
         
-        
-        model.addAttribute("offices", Office.getOffices());
         return "index";
     }
 }

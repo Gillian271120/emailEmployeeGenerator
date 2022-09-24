@@ -12,35 +12,52 @@
             <h2>Email addres generator</h2>
         </div>
         <div class="container">
-        <form action="#" th:action="@{/}" method="post">
-            <p>Name of the Employee: <input type="text" name="name" /></p>
-            <p>Surname of the Employee: <input type="text" name="surname" /></p>
-            <p> Offices:
-                <select id="officeSelect" name="office">
-                    <option th:each="office, officeIndex : ${offices}"
-                    th:value="${office.getName()}"
-                    th:text="${office.getName()}"
-                    name="office"
-                    >
-                    </option>
-                </select>
-            </p>
-            <p>
-                Departments:
-            <select id="departments" name="department">
-                <optgroup th:each="office, officeIndex : ${offices}" th:label="${office.getName()}">
-                    <option 
-                        th:each="department : ${office.getDepartments()}" 
-                        name="department"
-                        th:value="${department}"
-                        th:text="${department}"
+            <form action="#" th:action="@{/}" method="post">
+                <div class="form-group">
+                    <label for="name">Name of the Employee</label>
+                    <input id="name" name="name" class="form-control" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname of the Employee:</label>
+                    <input id="surname" name="surname" class="form-control" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="officeSelect">Offices:</label>
+                    <select class="form-control" id="officeSelect" name="office" required>
+                        <option th:each="office, officeIndex : ${offices}"
+                        th:value="${office.getName()}"
+                        th:text="${office.getName()}"
+                        name="office"
                         >
-                    </option>
-                </optgroup>
-            </select>
-            </p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form> 
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="departments">Departments</label>
+                    <select class="form-control" id="departments" name="department" required>
+                        <optgroup th:each="office, officeIndex : ${offices}" th:label="${office.getName()}">
+                            <option 
+                                th:each="department : ${office.getDepartments()}" 
+                                name="department"
+                                th:value="${department}"
+                                th:text="${department}"
+                                >
+                            </option>
+                        </optgroup>
+                    </select> 
+                </div>
+                <br>
+                <input type="submit" value="Submit" class="btn btn-primary mb-2" />
+                <input type="reset" value="Reset" class="btn btn-secondary mb-2"/>
+            </form>
+            
+            <hr>
+            <div class="container">
+                <p th:text="${error}"></p>
+            </div>
+            <div class="container">
+                <p th:text="${email}"></p>
+            </div>
         </div>
     </body>
 </html>
